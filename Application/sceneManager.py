@@ -3,6 +3,9 @@ import screenTemplate
 import mainMenu
 import mainGame
 
+def __init__(self, screen):
+    self.game = mainGame.Level()
+
 def processEvents(t_event):
     global currentScreen
 

@@ -9,6 +9,11 @@ class Button():
         self.buttonRect = [x, y, self.width, self.height]
         self.position = [x, y]
 
+    def ChangeScale(self, t_width, t_height):
+        self.width = t_width
+        self.height = t_height
+        self.buttonRect = [self.position[0], self.position[1], t_width, t_height]
+
         self.UpdateText()
 
     def ChangeText(self, newText):
@@ -75,7 +80,7 @@ class Button():
     position = [100, 20]
     buttonRect = [position[0], position[1], width, height]
 
-    font = pygame.font.Font('freesansbold.ttf', 32)
+    font = pygame.font.Font('freesansbold.ttf', 30)
     buttonText = font.render('Button', True, text_color)
     textRect = buttonText.get_rect()
     textRect.center = (position[0] + (width / 2), position[1] + (height / 2))

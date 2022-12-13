@@ -2,43 +2,38 @@
 import pygame
 import numpy as np
 import sceneManager
-
+import os
 import globals
 import imageRetriever
 
-def processEvents(t_event):
-    # Check for QUIT event    
-    running = True
-
-    if t_event.type == pygame.QUIT:
-        running = False       
-
-    gameController.processEvents(t_event)
-
-    return running
-
-def render():
-
-    gameController.render(screen)
+class main():
     
-    #screen.blit(image, (100, 100))    
+    def __init__(self):
+        self.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
+        pygame.init()
 
-    # Update the display using flip
-    pygame.display.flip()
-  
-# Define the dimensions of
-# screen object(width,height)
-screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
-  
-# Set the caption of the screen
-pygame.display.set_caption('Hidden Object REST API Game!')
+    def processEvents(self, t_event):
+        # Check for QUIT event    
+        running = True
 
-#img = imageRetriever.imageController()
+        if t_event.type == pygame.QUIT:
+            running = False       
 
-#image = pygame.image.load(img.getImage())
+        self.gameController.processEvents(t_event)
 
-gameController = sceneManager
+        return running
 
+    def render(self):
+
+        self.gameController.render(self.screen)   
+        pygame.display.flip()
+    
+
+    # Set the caption of the screen
+    pygame.display.set_caption('Hidden Object REST API Game!')
+    gameController = sceneManager
+    screen = 0
+startGame = main()
 # Variable to keep our game loop running
 running = True
   
@@ -46,6 +41,6 @@ while running:
 # for loop through the event queue  
     for event in pygame.event.get():
         
-        running = processEvents(event)
+        running = startGame.processEvents(event)
 
-    render()
+    startGame.render()
