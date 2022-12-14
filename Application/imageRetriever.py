@@ -27,7 +27,7 @@ class imageController():
     def getLocalImage(self,path):
          pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
          pygame.init()
-         imp = pygame.image.load(os.path.join(os.path.dirname(__file__), path)).convert()
+         imp = pygame.image.load(os.path.join(os.path.dirname(__file__), path))
          return imp
 
     

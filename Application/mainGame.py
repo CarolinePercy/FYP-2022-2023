@@ -18,15 +18,26 @@ class Level(screenTemplate.Screen):
     def render(base, screen):
         screen.fill(base.background_colour)
         base.bg.Draw(screen)
-        base.item.Draw(screen)
+
+        for i in base.items:
+            i.Draw(screen)
         
 
     def processEvents(base, t_event):   
-        check2 = base.item.processEvents(t_event)
+
+        for i in base.items:
+            check = i.processEvents(t_event)
+
+            if (check):
+                base.items.remove(i)
 
         return screenTemplate.Screens.MAIN_GAME
 
     background_colour = (100, 212, 12)
     screenRef = 0
     bg = background.image('Assets/Library-Background.jpg')
-    item = FindableItem.FindableItem(FindableItem.Item.WINE)
+
+    items = [FindableItem.FindableItem(FindableItem.Item.WINE), 
+    FindableItem.FindableItem(FindableItem.Item.CLOCK),
+    FindableItem.FindableItem(FindableItem.Item.LAPTOP),
+    FindableItem.FindableItem(FindableItem.Item.BOOKS)]

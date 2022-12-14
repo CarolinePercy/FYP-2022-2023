@@ -14,7 +14,7 @@ class FindableItem(button.Button):
 
     def __init__(self, path, t_distractor = False):
 
-        thisType = path
+        self.thisType = path
         # sets up the image itself
         self.distractor = t_distractor
 
@@ -24,10 +24,6 @@ class FindableItem(button.Button):
 
         self.imp = self.imp.convert_alpha()
 
-        self.imp.set_colorkey((0, 0, 0))
-
-        pygame.Surface.convert_alpha(self.imp)
-
         self.ChangeScale(self.itemTypes[path.value][1][0],self.itemTypes[path.value][1][1])
         self.ChangePosition(self.itemTypes[path.value][2][0], self.itemTypes[path.value][2][1])
 
@@ -35,16 +31,14 @@ class FindableItem(button.Button):
 
     
     def Draw(self, t_screen):
-        pygame.draw.rect(t_screen,self.pointerColour,self.buttonRect)
-        t_screen.blit(self.imp, self.itemTypes[self.thisType][2])
+        #pygame.draw.rect(t_screen,self.pointerColour,self.buttonRect)
+        t_screen.blit(self.imp, self.itemTypes[self.thisType.value][2])
         
 
-    #def ScaleImage(self, type):
-        #pygame.transform.scale(self.imp, (100, 100))
-
-
-    
-    itemTypes = [["GlassOfWine.png", (25, 60),(510,360)],["Clock.png", (200, 200),(0,0)]]
+    itemTypes = [["GlassOfWine.png", (25, 60),(510,360)],
+    ["Clock.png", (50, 50),(397,155)],
+    ["Laptop.png", (200, 100),(200,600)],
+    ["StackOfBooks.png", (80, 80),(820,430)]]
     
     distractor = False
     imp = 0
