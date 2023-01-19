@@ -1,5 +1,5 @@
-import imageRetriever
-import globals
+from . import imageRetriever
+from . import globals
 import pygame
 
 class image:

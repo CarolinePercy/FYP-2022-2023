@@ -4,7 +4,7 @@ import os
 import json
 from PIL import Image
 import io
-import globals
+from . import globals
 
 class imageController():
 
@@ -27,7 +27,7 @@ class imageController():
     def getLocalImage(self,path):
          pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
          pygame.init()
-         imp = pygame.image.load(os.path.join(os.path.dirname(__file__), path))
+         imp = pygame.image.load(os.path.join(os.path.dirname(os.path.dirname(__file__)), path))
          return imp
 
     

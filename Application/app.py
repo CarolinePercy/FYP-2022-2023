@@ -1,10 +1,11 @@
 # import the pygame module
 import pygame
 import numpy as np
-import sceneManager
 import os
-import globals
-import imageRetriever
+
+import Scripts.sceneManager as sceneManager
+import Scripts.globals as globals
+import Scripts.imageRetriever as imageRetriever
 
 class main():
     

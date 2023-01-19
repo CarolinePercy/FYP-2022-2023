@@ -1,7 +1,7 @@
-import screenTemplate
+from . import screenTemplate
 
-import mainMenu
-import mainGame
+from . import mainMenu
+from . import mainGame
 
 def __init__(self, screen):
     self.game = mainGame.Level()

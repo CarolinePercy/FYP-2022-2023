@@ -1,7 +1,7 @@
-import screenTemplate
+from . import screenTemplate
 import pygame
-import button
-import globals
+from . import button
+from . import globals
 
 class Menu(screenTemplate.Screen):
 

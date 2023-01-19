@@ -80,7 +80,7 @@ class Button():
     position = [100, 20]
     buttonRect = [position[0], position[1], width, height]
 
-    font = pygame.font.Font('freesansbold.ttf', 30)
+    font = pygame.font.SysFont('candara', 30)
     buttonText = font.render('Button', True, text_color)
     textRect = buttonText.get_rect()
     textRect.center = (position[0] + (width / 2), position[1] + (height / 2))
