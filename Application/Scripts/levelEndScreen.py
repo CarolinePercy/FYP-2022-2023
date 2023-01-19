@@ -26,14 +26,23 @@ class EndScreen():
 
     def Draw(self, t_screen):
 
-        t_screen.blit(self.transparentSurface, (0,0))
+        if (self.finished):
+            t_screen.blit(self.transparentSurface, (0,0))
 
-        t_screen.blit(self.mainBox, self.mainPlace)
-        t_screen.blit(self.titleBox, self.titlePlace)
+            t_screen.blit(self.mainBox, self.mainPlace)
+            t_screen.blit(self.titleBox, self.titlePlace)
 
-    def Update(self):
-        alpha += 1
-        self.transparentSurface.set_alpha(self.alpha)
+    def Update(self, dt):
+
+        if (self.finished):
+
+            if (self.finalAlpha > self.alpha):
+                self.alpha += 4
+
+            self.transparentSurface.set_alpha(self.alpha)
+    
+    def EndLevel(self):
+        self.finished = True
 
     titleBox = 0
     mainBox = 0
@@ -46,8 +55,11 @@ class EndScreen():
     mainPlace = 0
     titleScale = (291, 65)#291 : 65
     mainScale = (384,236) #96 : 59
+    finalStop = [0, 0]
 
     transparentSurface = pygame.Surface((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
     alpha = 0
+    finalAlpha = 180
+    finished = False
     
      

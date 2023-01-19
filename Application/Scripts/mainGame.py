@@ -18,21 +18,12 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 class Level(screenTemplate.Screen):
 
-
     def __init__(self):
-
-        #print(pygame.font.get_fonts())
-
-        #centre = (globals.SCREEN_WIDTH / 2) - (self.button.width / 2)
 
         for i in self.items:
 
             self.gameList.AddToList(globals.g_itemTypes[i.thisType.value][3])
-            print(globals.g_itemTypes[i.thisType.value][3])
 
-
-
-    # Methods
 
     def render(base, screen):
 
@@ -51,7 +42,6 @@ class Level(screenTemplate.Screen):
         base.end.Draw(screen)
         
 
-
     def processEvents(base, t_event):   
 
 
@@ -69,6 +59,14 @@ class Level(screenTemplate.Screen):
 
         return screenTemplate.Screens.MAIN_GAME
 
+
+    def update(base, dt):
+        base.end.Update(dt)
+
+        if (base.gameList.DidPlayerFindAllItems()):
+            base.end.EndLevel()
+
+        
 
     background_colour = (100, 212, 12)
 

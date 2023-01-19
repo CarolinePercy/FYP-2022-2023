@@ -24,6 +24,9 @@ class main():
 
         return running
 
+    def update(self,dt):
+        self.gameController.update(dt)
+
     def render(self):
 
         self.gameController.render(self.screen)   
@@ -37,11 +40,17 @@ class main():
 startGame = main()
 # Variable to keep our game loop running
 running = True
-  
+
+clock=pygame.time.Clock()
+
 while running:  
 # for loop through the event queue  
+    dt = clock.tick(globals.FPS)
     for event in pygame.event.get():
+            running = startGame.processEvents(event)
         
-        running = startGame.processEvents(event)
+    
+    startGame.update(dt)
 
     startGame.render()
+    
