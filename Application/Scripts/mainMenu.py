@@ -34,7 +34,7 @@ class Menu(screenTemplate.Screen):
         elif(quitCheck):
             quit()
         elif(optionsCheck):
-            t = 0
+            return screenTemplate.Screens.MAIN_OPTIONS
         
         return screenTemplate.Screens.MAIN_MENU
 
