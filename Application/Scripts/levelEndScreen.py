@@ -56,28 +56,28 @@ class EndScreen():
         self.textRect.center = ((globals.SCREEN_WIDTH / 2) - self.textRect.width / 2, 
         (globals.SCREEN_HEIGHT / 2) - self.textRect.height / 2)
 
-
-
-    titleBox = 0
-    mainBox = 0
-
     completedLevel = False
 
     font = pygame.font.SysFont('franklingothicmedium', 18)
+
+    titleBox = 0
+    mainBox = 0
 
     titlePlace = 0
     mainPlace = 0
     titleScale = (291, 65)#291 : 65
     mainScale = (384,236) #96 : 59
-    finalStop = [0, 0]
 
     score = 0
     scoreText = ""
-    scorePlace = (0,0)
-    timePlace = (0,0)
+
     text_color = (0, 0, 0)
     textObject = ""
+
     textRect = font.render('', True, text_color)
+
+    redoButton = button.Button("RetryButton.png")
+    exitButton = button.Button("CloseButton.png")
 
     transparentSurface = pygame.Surface((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
     alpha = 0

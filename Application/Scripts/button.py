@@ -1,9 +1,27 @@
 import pygame
 import sys
+from . import imageRetriever
 
 pygame.init()
 
 class Button():
+
+    def __init__(self, path = "buttonImage.png"):
+        t = 0
+        self.image = imageRetriever.imageController().getLocalImage("Assets/" + path)
+
+        self.image = pygame.transform.smoothscale(self.image, (self.width, self.height))
+
+        self.image = self.image.convert_alpha()
+
+        self.darkerImage = self.image.copy()
+        self.darkestImage = self.image.copy()
+
+        darker = pygame.Surface(self.image.get_size()).convert_alpha()
+        darker.fill((0, 0, 0, .20 *255))
+        self.darkerImage.blit(darker, (0, 0))
+
+        self.drawnImage = self.image
 
     def ChangePosition(self, x, y):
         self.buttonRect = [x, y, self.width, self.height]
@@ -34,9 +52,9 @@ class Button():
         bottom = self.height + self.position[1]
 
         if (left <= mouse[0] <= right and top <= mouse[1] <= bottom):
-            self.pointerColour = self.color_dark
+            self.drawnImage = self.darkerImage
         else:
-            self.pointerColour = self.color_light
+            self.drawnImage = self.image
 
     def Press(self):
 
@@ -48,14 +66,14 @@ class Button():
         bottom = self.height + self.position[1]
 
         if (left <= mouse[0] <= right and top <= mouse[1] <= bottom):
-            self.pointerColour = self.color_darkest
             return True
         
         return False
 
-
     def Draw(self, t_screen):
-        pygame.draw.rect(t_screen,self.pointerColour,self.buttonRect)
+        #pygame.draw.rect(t_screen,self.pointerColour,self.buttonRect)
+        
+        t_screen.blit(self.drawnImage, self.buttonRect)
         t_screen.blit(self.buttonText, self.textRect)
 
     def processEvents(self, t_event):
@@ -69,16 +87,16 @@ class Button():
         
         return check
 
-    color_light = (170,170,170)
-    color_dark = (80,80,80)
-    color_darkest = (40,40,40)
-    text_color = (255, 255, 255)
-    pointerColour = color_light
+    text_color = (0, 0, 0)
 
     width = 140
     height = 40
     position = [100, 20]
     buttonRect = [position[0], position[1], width, height]
+
+    image = 0
+    darkerImage = 0
+    drawnImage = 0
 
     font = pygame.font.SysFont('candara', 30)
     buttonText = font.render('Button', True, text_color)
