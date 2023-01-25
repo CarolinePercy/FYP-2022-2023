@@ -4,6 +4,7 @@ from . import globals
 from . import imageRetriever
 
 from . import button
+import time
 
 class EndScreen():
 
@@ -32,6 +33,8 @@ class EndScreen():
             t_screen.blit(self.mainBox, self.mainPlace)
             t_screen.blit(self.titleBox, self.titlePlace)
 
+            t_screen.blit(self.textObject, self.textRect.center)
+
     def Update(self, dt):
 
         if (self.finished):
@@ -41,8 +44,19 @@ class EndScreen():
 
             self.transparentSurface.set_alpha(self.alpha)
     
-    def EndLevel(self):
+    def EndLevel(self, timeLeft):
+
         self.finished = True
+        convertTime = time.strftime("%M:%S", time.gmtime(timeLeft))
+        timeText = "Time - " + str(convertTime)
+
+        self.textObject = self.font.render(timeText, True, self.text_color)
+        self.textRect = self.textObject.get_rect()
+
+        self.textRect.center = ((globals.SCREEN_WIDTH / 2) - self.textRect.width / 2, 
+        (globals.SCREEN_HEIGHT / 2) - self.textRect.height / 2)
+
+
 
     titleBox = 0
     mainBox = 0
@@ -56,6 +70,14 @@ class EndScreen():
     titleScale = (291, 65)#291 : 65
     mainScale = (384,236) #96 : 59
     finalStop = [0, 0]
+
+    score = 0
+    scoreText = ""
+    scorePlace = (0,0)
+    timePlace = (0,0)
+    text_color = (0, 0, 0)
+    textObject = ""
+    textRect = font.render('', True, text_color)
 
     transparentSurface = pygame.Surface((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
     alpha = 0

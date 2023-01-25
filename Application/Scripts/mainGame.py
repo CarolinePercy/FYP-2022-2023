@@ -12,6 +12,7 @@ from . import globals
 from . import FindableItem
 
 from . import background
+from . import timer
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,12 +40,15 @@ class Level(screenTemplate.Screen):
 
         base.gameList.Draw(screen)
 
+        base.time.Draw(screen)
+
         base.end.Draw(screen)
         
 
     def processEvents(base, t_event):   
 
-
+        base.time.processEvents(t_event)
+        
         for i in base.items:
 
             check = i.processEvents(t_event)
@@ -62,9 +66,11 @@ class Level(screenTemplate.Screen):
 
     def update(base, dt):
         base.end.Update(dt)
+        #base.time.Update(dt)
 
         if (base.gameList.DidPlayerFindAllItems()):
-            base.end.EndLevel()
+            timeLeft = base.time.StopTimer()
+            base.end.EndLevel(timeLeft)
 
         
 
@@ -90,4 +96,5 @@ class Level(screenTemplate.Screen):
 
     gameList  = list.List()
     end = levelEndScreen.EndScreen()
+    time = timer.Timer()
     
