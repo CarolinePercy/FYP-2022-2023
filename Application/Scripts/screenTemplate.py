@@ -5,6 +5,7 @@ from enum import Enum
 class Screens(Enum):
     MAIN_MENU = 0
     MAIN_GAME = 1
+    MAIN_OPTIONS = 2
 
 class Screen():
 
