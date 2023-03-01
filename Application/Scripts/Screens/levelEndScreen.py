@@ -1,16 +1,16 @@
 import pygame
 
-from . import globals
-from . import imageRetriever
+from .. import globals
+from ..RestAPI import imageRetriever
 
-from . import button
+from ..UI import button
 import time
 
 class EndScreen():
 
     def __init__(self):
-        self.titleBox = imageRetriever.imageController().getLocalImage("Assets/TitleBox.png")
-        self.mainBox = imageRetriever.imageController().getLocalImage("Assets/MainBox.png")
+        self.titleBox = imageRetriever.imageController().getLocalImage("../Assets/TitleBox.png")
+        self.mainBox = imageRetriever.imageController().getLocalImage("../Assets/MainBox.png")
 
         self.titleBox = pygame.transform.smoothscale(self.titleBox, self.titleScale)
         self.mainBox = pygame.transform.smoothscale(self.mainBox, self.mainScale)

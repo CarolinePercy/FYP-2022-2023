@@ -3,9 +3,9 @@ import pygame
 #import numpy as np
 import os
 
-import Scripts.sceneManager as sceneManager
+import Scripts.Screens.sceneManager as sceneManager
 import Scripts.globals as globals
-import Scripts.imageRetriever as imageRetriever
+import Scripts.RestAPI.imageRetriever as imageRetriever
 
 class main():
     

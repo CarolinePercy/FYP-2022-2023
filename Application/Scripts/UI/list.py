@@ -1,12 +1,12 @@
 import pygame
 
-from . import globals
-from . import imageRetriever
+from .. import globals
+from ..RestAPI import imageRetriever
 
 class List():
 
     def __init__(self):
-        self.listAppearance = imageRetriever.imageController().getLocalImage("Assets/ListAppearance.png")
+        self.listAppearance = imageRetriever.imageController().getLocalImage("../Assets/ListAppearance.png")
 
     def AddToList(self, item):
         self.objectList.append([item, False])

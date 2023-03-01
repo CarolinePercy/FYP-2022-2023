@@ -28,6 +28,9 @@ def render(screen):
 
     elif (currentScreen == screenTemplate.Screens.MAIN_GAME):
         game.render(screen)
+    
+    elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
+        options.render(screen)
 
 
 def update(timePassed):
@@ -41,7 +44,8 @@ def update(timePassed):
         game.update(timePassed)
 
     elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
-        options.render(screen)
+        #options.render(screen)
+        t = 0
 
 currentScreen = screenTemplate.Screens.MAIN_MENU
 

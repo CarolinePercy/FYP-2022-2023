@@ -1,18 +1,18 @@
 import pygame
 import os
 
-from . import list
+from ..UI import list
 
 from . import screenTemplate
 from . import levelEndScreen
 
-from . import button
-from . import globals
+from ..UI import button
+from .. import globals
 
-from . import FindableItem
+from ..UI import FindableItem
 
-from . import background
-from . import timer
+from .. import background
+from ..UI import timer
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -78,7 +78,7 @@ class Level(screenTemplate.Screen):
 
     screenRef = 0
 
-    bg = background.image('Assets/Library-Background.jpg')
+    bg = background.image('../Assets/Library-Background.jpg')
 
 
     items = [

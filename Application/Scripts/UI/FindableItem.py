@@ -1,8 +1,8 @@
 import sys
 from . import button
 
-from . import imageRetriever
-from . import globals
+from ..RestAPI import imageRetriever
+from .. import globals
 import pygame
 
 
@@ -20,7 +20,7 @@ class FindableItem(button.Button):
         self.distractor = t_distractor
 
 
-        self.imp = imageRetriever.imageController().getLocalImage("Assets/" + globals.g_itemTypes[path.value][0])
+        self.imp = imageRetriever.imageController().getLocalImage("../Assets/" + globals.g_itemTypes[path.value][0])
 
 
         self.imp = pygame.transform.smoothscale(self.imp, globals.g_itemTypes[path.value][1])

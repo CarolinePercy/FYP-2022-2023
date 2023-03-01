@@ -1,6 +1,6 @@
 import pygame
 
-from . import globals
+from .. import globals
 
 class InputBox():
     
@@ -9,6 +9,8 @@ class InputBox():
         self.inputRect.center = (centre, 200)
 
     def processEvents(self, t_event):
+
+        entered = False
 
         if t_event.type == pygame.MOUSEBUTTONDOWN:
 
@@ -26,9 +28,14 @@ class InputBox():
   
                 self.user_text = self.user_text[:-1]
 
+            elif t_event.key == pygame.K_RETURN:
+                entered = True
+
             else:
                 self.user_text += t_event.unicode
                 print(t_event.unicode)
+
+        return entered
 
 
     def Draw(self, t_screen):
@@ -40,7 +47,10 @@ class InputBox():
       
         self.inputRect.w = max(100, text_surface.get_width()+10)
 
-
+    def ReturnInput(self):
+        value = self.user_text
+        self.user_text = ""
+        return value
 
     inputRect = pygame.Rect(0, 0, 300, 32)
     color_active = pygame.Color('lightskyblue3')

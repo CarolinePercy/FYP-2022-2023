@@ -1,14 +1,14 @@
 import pygame
 
-from . import globals
-from . import imageRetriever
+from .. import globals
+from ..RestAPI import imageRetriever
 import time
 
 class Timer():
     def __init__(self):
        self.StartTimer()
 
-       self.timeAppearance = imageRetriever.imageController().getLocalImage("Assets/MainBox.png")
+       self.timeAppearance = imageRetriever.imageController().getLocalImage("../Assets/MainBox.png")
        self.timeAppearance = pygame.transform.smoothscale(self.timeAppearance, self.timeScale)
 
        self.timePlacement = ((globals.SCREEN_WIDTH / 2) - self.timeAppearance.get_width() / 2, 0);

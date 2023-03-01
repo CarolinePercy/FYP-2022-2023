@@ -1,4 +1,4 @@
-from . import imageRetriever
+from .RestAPI import imageRetriever
 from . import globals
 import pygame
 

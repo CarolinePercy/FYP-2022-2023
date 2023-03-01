@@ -1,6 +1,6 @@
 import pygame
 import sys
-from . import imageRetriever
+from ..RestAPI import imageRetriever
 
 pygame.init()
 
@@ -8,7 +8,7 @@ class Button():
 
     def __init__(self, path = "buttonImage.png"):
         t = 0
-        self.image = imageRetriever.imageController().getLocalImage("Assets/" + path)
+        self.image = imageRetriever.imageController().getLocalImage("../Assets/" + path)
 
         self.image = pygame.transform.smoothscale(self.image, (self.width, self.height))
 
