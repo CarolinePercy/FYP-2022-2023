@@ -13,12 +13,14 @@ class Options(screenTemplate.Screen):
         self.backButton.ChangeText('Back')
 
     def render(self, window):
+        
         window.fill(self.background_colour)
+
+        window.blit(pygame.transform.scale(self.image, (1280, 720)), (0, 0))
+
         self.backButton.Draw(window)
         self.input.Draw(window)
-
-        for i in self.images:
-            window.blit(pygame.transform.scale(i, (1280, 720)), (0, 0))
+            
 
 
     def processEvents(base, t_event):
@@ -31,14 +33,14 @@ class Options(screenTemplate.Screen):
 
         if (enterCheck):
             userInput = base.input.ReturnInput()
-            i = imageRetriever.imageController().APIImageRequest(userInput)
-            base.images.append(i)
+            base.image = imageRetriever.imageController().APIImageRequest(userInput)
+            
             
         
         return screenTemplate.Screens.MAIN_OPTIONS
 
 
-    images = []
+    image = pygame.display.set_mode((0,0))
     backButton = button.Button()
     submitButton = button.Button()
     input = textBox.InputBox()

@@ -25,25 +25,33 @@ class imageController():
                 apiText = input
 
             response = self.session.get(apiText)
-            #self.session.urls.len()
 
-            arrayString = response.content.decode('utf8').replace("'", '"')
+            if response.ok:
 
-            json_object = json.loads(arrayString)
+                print(response.headers.get('X-RateLimit-Limit'))
+                print(response.headers.get('X-RateLimit-Remaining'))
+                print(response.headers.get('X-RateLimit-Reset'))
+                
+
+                arrayString = response.content.decode('utf8')
+
+                json_object = json.loads(arrayString)
+
+                imList = json_object['hits']
 
 
-            imList = json_object['hits']
+                url = imList[0]["webformatURL"]
 
+                r = self.session.get(url)
 
-            url = imList[0]["webformatURL"]
+                img = io.BytesIO(r.content)
 
-            r = self.session.get(url)
+                img = pygame.image.load(img)
 
-            img = io.BytesIO(r.content)
+                return img
 
-            img = pygame.image.load(img)
-
-            return img
+            else:
+                print(response.reason)
         
         else:
             t = 0
