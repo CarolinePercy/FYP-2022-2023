@@ -37,6 +37,7 @@ class main():
     pygame.display.set_caption('Hidden Object REST API Game!')
     gameController = sceneManager
     screen = 0
+    
 startGame = main()
 # Variable to keep our game loop running
 running = True

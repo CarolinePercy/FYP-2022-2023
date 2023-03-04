@@ -35,12 +35,26 @@ class Button():
         self.UpdateText()
 
     def ChangeText(self, newText):
-        self.buttonText = self.font.render(newText, True, self.text_color)
+        self.stringText = newText
+        self.buttonText = self.font.render(self.stringText, True, self.text_color)
         self.UpdateText()
 
     def UpdateText(self):
         self.textRect = self.buttonText.get_rect()
         self.textRect.center = (self.position[0] + (self.width / 2), self.position[1] + (self.height / 2))
+
+        reducer = 1
+
+        tempFont = self.font
+
+        while (self.textRect.width > self.buttonRect[2] - 10):
+            tempFont = pygame.font.SysFont('candara', self.startFontSize - reducer)
+            reducer += 1
+            self.buttonText = tempFont.render(self.stringText, True, self.text_color)
+            self.textRect = self.buttonText.get_rect()
+            self.textRect.center = (self.position[0] + (self.width / 2), self.position[1] + (self.height / 2))
+
+
 
     def Hover(self):
         
@@ -66,6 +80,7 @@ class Button():
         bottom = self.height + self.position[1]
 
         if (left <= mouse[0] <= right and top <= mouse[1] <= bottom):
+            self.drawnImage = self.image
             return True
         
         return False
@@ -88,6 +103,7 @@ class Button():
         return check
 
     text_color = (0, 0, 0)
+    stringText = 'Button'
 
     width = 140
     height = 40
@@ -98,7 +114,9 @@ class Button():
     darkerImage = 0
     drawnImage = 0
 
-    font = pygame.font.SysFont('candara', 30)
-    buttonText = font.render('Button', True, text_color)
+    startFontSize = 30
+
+    font = pygame.font.SysFont('candara', startFontSize)
+    buttonText = font.render(stringText, True, text_color)
     textRect = buttonText.get_rect()
     textRect.center = (position[0] + (width / 2), position[1] + (height / 2))

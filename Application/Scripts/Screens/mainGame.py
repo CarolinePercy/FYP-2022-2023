@@ -1,18 +1,12 @@
 import pygame
 import os
 
-from ..UI import list
+from ..UI import list, button, FindableItem, timer
 
-from . import screenTemplate
-from . import levelEndScreen
+from . import screenTemplate, levelEndScreen
 
-from ..UI import button
-from .. import globals
+from .. import globals, background
 
-from ..UI import FindableItem
-
-from .. import background
-from ..UI import timer
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
