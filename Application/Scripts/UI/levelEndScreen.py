@@ -3,7 +3,7 @@ import pygame
 from .. import globals
 from ..RestAPI import imageRetriever
 
-from ..UI import button
+from . import button
 import time
 
 class EndScreen():
@@ -34,6 +34,9 @@ class EndScreen():
             t_screen.blit(self.titleBox, self.titlePlace)
 
             t_screen.blit(self.textObject, self.textRect.center)
+
+            self.redoButton.Draw(t_screen)
+            self.exitButton.Draw(t_screen)
 
     def Update(self, dt):
 

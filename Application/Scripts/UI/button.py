@@ -6,8 +6,11 @@ pygame.init()
 
 class Button():
 
-    def __init__(self, path = "buttonImage.png"):
-        t = 0
+    def __init__(self, newSize = [140, 40], path = "buttonImage.png"):
+        
+        self.width = newSize[0]
+        self.height = newSize[1]
+
         self.image = imageRetriever.imageController().getLocalImage("../Assets/" + path)
 
         self.image = pygame.transform.smoothscale(self.image, (self.width, self.height))
@@ -103,7 +106,7 @@ class Button():
         return check
 
     text_color = (0, 0, 0)
-    stringText = 'Button'
+    stringText = ''
 
     width = 140
     height = 40

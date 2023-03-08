@@ -1,9 +1,9 @@
 import pygame
 import os
 
-from ..UI import list, button, FindableItem, timer
+from ..UI import list, button, FindableItem, timer, levelEndScreen
 
-from . import screenTemplate, levelEndScreen
+from . import screenTemplate
 
 from .. import globals, background
 
