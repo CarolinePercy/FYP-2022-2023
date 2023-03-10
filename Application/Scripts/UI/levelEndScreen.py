@@ -24,6 +24,9 @@ class EndScreen():
         self.transparentSurface.set_alpha(self.alpha)
         self.transparentSurface.fill((0,0,0))
 
+        self.redoButton.ChangePosition(self.mainPlace[0],  self.mainPlace[1] + self.mainBox.get_height())
+        self.exitButton.ChangePosition(self.mainPlace[0] + self.mainBox.get_width() - self.exitButton.getSize()[0],  self.mainPlace[1] + self.mainBox.get_height())
+
 
     def Draw(self, t_screen):
 
@@ -46,6 +49,21 @@ class EndScreen():
                 self.alpha += 4
 
             self.transparentSurface.set_alpha(self.alpha)
+
+    def ProcessEvents(self, t_event):
+        if (self.finished):
+            retryCheck = self.redoButton.processEvents(t_event)
+            exitCheck = self.exitButton.processEvents(t_event)
+
+            if (retryCheck):
+                None
+                return 1
+
+            if (exitCheck):
+                None
+                return 2
+        
+        return 0
     
     def EndLevel(self, timeLeft):
 
@@ -58,6 +76,11 @@ class EndScreen():
 
         self.textRect.center = ((globals.SCREEN_WIDTH / 2) - self.textRect.width / 2, 
         (globals.SCREEN_HEIGHT / 2) - self.textRect.height / 2)
+
+    def RestartLevel(self):
+        self.finished = False
+        self.alpha = 0
+        self.transparentSurface.set_alpha(self.alpha)
 
     completedLevel = False
 
@@ -79,8 +102,8 @@ class EndScreen():
 
     textRect = font.render('', True, text_color)
 
-    redoButton = button.Button("RetryButton.png")
-    exitButton = button.Button("CloseButton.png")
+    redoButton = button.Button((49,33),"RetryButton.png")
+    exitButton = button.Button((49, 33), "CloseButton.png")
 
     transparentSurface = pygame.Surface((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
     alpha = 0

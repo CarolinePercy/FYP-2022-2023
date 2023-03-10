@@ -34,16 +34,15 @@ class FindableItem(button.Button):
         self.ChangePosition(globals.g_itemTypes[path.value][2][0], globals.g_itemTypes[path.value][2][1])
 
         
-
+    def Toggle(self, toggleValue):
+        self.isActive = toggleValue
     
 
     def Draw(self, t_screen):
-
-        #pygame.draw.rect(t_screen,self.pointerColour,self.buttonRect)
-
-        t_screen.blit(self.imp, globals.g_itemTypes[self.thisType.value][2])
+        if (self.isActive):
+            t_screen.blit(self.imp, globals.g_itemTypes[self.thisType.value][2])
         
-    
+    isActive = True
 
     distractor = False
 

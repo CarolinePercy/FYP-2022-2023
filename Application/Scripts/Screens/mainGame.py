@@ -43,16 +43,23 @@ class Level(screenTemplate.Screen):
 
         base.time.processEvents(t_event)
         
-        for i in base.items:
+        if (base.gameIsActive):
+            for i in base.items:
 
-            check = i.processEvents(t_event)
+                check = i.processEvents(t_event)
 
 
-            if (check):
+                if (check):
 
-                base.items.remove(i)
-                base.gameList.FoundItem(i.thisType)
+                    i.Toggle(False)
+                    base.gameList.FoundItem(i.thisType)
 
+        retryCheck = base.end.ProcessEvents(t_event)
+
+        if (retryCheck > 0):
+            base.resetLevel()
+            if (retryCheck == 2):
+                return screenTemplate.Screens.MAIN_MENU
 
 
         return screenTemplate.Screens.MAIN_GAME
@@ -65,8 +72,16 @@ class Level(screenTemplate.Screen):
         if (base.gameList.DidPlayerFindAllItems()):
             timeLeft = base.time.StopTimer()
             base.end.EndLevel(timeLeft)
+            base.gameIsActive = False
 
-        
+    def resetLevel(self):
+        for i in self.items:
+            i.Toggle(True)
+            self.gameList.ResetList()
+            self.gameIsActive = True
+            self.end.RestartLevel()
+            self.time.StartTimer()
+
 
     background_colour = (100, 212, 12)
 
@@ -87,7 +102,7 @@ class Level(screenTemplate.Screen):
 
     ]
 
-
+    gameIsActive = True
     gameList  = list.List()
     end = levelEndScreen.EndScreen()
     time = timer.Timer()

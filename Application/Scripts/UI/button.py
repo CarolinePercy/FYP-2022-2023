@@ -57,7 +57,9 @@ class Button():
             self.textRect = self.buttonText.get_rect()
             self.textRect.center = (self.position[0] + (self.width / 2), self.position[1] + (self.height / 2))
 
-
+    def getSize(self):
+        size = [self.width, self.height]
+        return size
 
     def Hover(self):
         

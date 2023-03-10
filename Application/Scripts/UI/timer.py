@@ -42,8 +42,13 @@ class Timer():
 
     
     def StartTimer(self):
+        self.time = 300
+        self.stopTime = False
+
+        convertTime = time.strftime("%M:%S", time.gmtime(self.time))
+        self.timeText = self.font.render(convertTime, True, self.text_color)
+
         pygame.time.set_timer(pygame.USEREVENT, 1000)
-        t = 0
 
     def StopTimer(self):
         self.stopTime = True
