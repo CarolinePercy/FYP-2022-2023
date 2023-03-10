@@ -21,6 +21,11 @@ class List():
                 
             index += 1
 
+    def ResetList(self):
+        for item in self.objectList:
+
+            item[1] = False
+
     def Draw(self, t_screen):
         t_screen.blit(self.listAppearance, self.listPlacement)
         placement = 1
