@@ -46,7 +46,7 @@ def update(timePassed):
         game.update(timePassed)
 
     elif (currentScreen == screenTemplate.Screens.MAIN_THEME_SELECTOR):
-        None
+        themeSelector.Update(timePassed)
 
     elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
         None

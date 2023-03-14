@@ -10,7 +10,7 @@ import pygame
 class FindableItem(button.Button):
 
 
-    def __init__(self, path, t_distractor = False):
+    def __init__(self, path = "", t_distractor = False):
 
 
         self.thisType = path
@@ -20,13 +20,13 @@ class FindableItem(button.Button):
         self.distractor = t_distractor
 
 
-        self.imp = imageRetriever.imageController().getLocalImage("../Assets/" + globals.g_itemTypes[path.value][0])
+        self.image = imageRetriever.imageController().getLocalImage("../Assets/" + globals.g_itemTypes[path.value][0])
 
 
-        self.imp = pygame.transform.smoothscale(self.imp, globals.g_itemTypes[path.value][1])
+        self.image = pygame.transform.smoothscale(self.image, globals.g_itemTypes[path.value][1])
 
 
-        self.imp = self.imp.convert_alpha()
+        self.image = self.image.convert_alpha()
 
 
         self.ChangeScale(globals.g_itemTypes[path.value][1][0],globals.g_itemTypes[path.value][1][1])
@@ -40,13 +40,11 @@ class FindableItem(button.Button):
 
     def Draw(self, t_screen):
         if (self.isActive):
-            t_screen.blit(self.imp, globals.g_itemTypes[self.thisType.value][2])
+            t_screen.blit(self.image, (self.position[0], self.position[1]))
         
     isActive = True
 
     distractor = False
-
-    imp = 0
 
     thisType = 0
 
