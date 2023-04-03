@@ -122,7 +122,6 @@ class List():
             if isinstance(item[0], EditorItem.EditorItem):
                 item[0].Update()
             
-
     def ProcessEvents(self, t_event):
 
         loop = 0

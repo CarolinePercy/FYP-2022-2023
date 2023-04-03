@@ -24,32 +24,48 @@ class ThemeSelector(screenTemplate.Screen):
         (globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT)), (0, 0))
 
         self.backButton.Draw(window)
-        self.submitButton.Draw(window)
-        self.input.Draw(window)
-        self.editor.Draw(window)
+
+        if (not self.editorMode):
+            self.submitButton.Draw(window)
+            self.input.Draw(window)
+
+        else:   
+            self.editor.Draw(window)
             
     def Update(self, dt):
         self.editor.Update(dt)
 
     def processEvents(base, t_event):
+
+        if (not base.editorMode):
+
+            enterCheck = base.input.processEvents(t_event)
+
+            submitCheck = base.submitButton.processEvents(t_event)
+
+            if (enterCheck or submitCheck):
+                userInput = base.input.ReturnInput()
+                base.image = base.imageGet.RequestBackgrounds(userInput)
+                base.editor.RetrieveItems(userInput)
+                base.ChangeMode(True)
+
+        else:
+            editorCheck = base.editor.ProcessEvents(t_event)
+
+
         backCheck = base.backButton.processEvents(t_event)
-
-        enterCheck = base.input.processEvents(t_event)
-
-        submitCheck = base.submitButton.processEvents(t_event)
-
         if (backCheck):
+            base.ChangeMode(False)
+            base.editor.ResetEditor()
+            base.image[0].set_alpha(0)
+
             return screenTemplate.Screens.MAIN_MENU
-
-        if (enterCheck or submitCheck):
-            userInput = base.input.ReturnInput()
-            base.image = base.imageGet.RequestBackgrounds(userInput)
-            base.editor.RetrieveItems(userInput)
-
-            
-        editerCheck = base.editor.ProcessEvents(t_event)
         
         return screenTemplate.Screens.MAIN_THEME_SELECTOR
+
+    def ChangeMode(self, mode):
+        #self.editor.editorMode = mode
+        self.editorMode = mode
 
 
     image = [pygame.Surface((0,0))]
@@ -58,3 +74,4 @@ class ThemeSelector(screenTemplate.Screen):
     input = textBox.InputBox()
     imageGet = imageRetriever.imageController()
     editor = levelEditorScreen.EditorScreen()
+    editorMode = False

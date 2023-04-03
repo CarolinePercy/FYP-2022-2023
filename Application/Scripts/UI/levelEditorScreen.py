@@ -21,20 +21,21 @@ class EditorScreen():
         self.menuButton.ChangePosition(globals.SCREEN_WIDTH - self.menuButton.buttonRect[2], 20)
 
         self.listOfObjects.ChangePosition((globals.SCREEN_WIDTH, -10))  
-    
-
+         
+        self.saveButton.ChangePosition(self.saveButton.width + 5, 5) 
+        self.saveButton.ChangeText('Save Level')
 
     def Draw(self, t_screen):
 
         self.menuButton.Draw(t_screen)
 
-        self.listOfObjects.Draw(t_screen)
+        self.saveButton.Draw(t_screen)
 
+        self.listOfObjects.Draw(t_screen)
 
     def Update(self, dt):
         
         self.listOfObjects.Update()
-
 
     def RetrieveItems(self, input):
 
@@ -51,11 +52,10 @@ class EditorScreen():
 
             imageYStart += oneImage.get_height() + self.itemDistanceOnList
 
-
     def ProcessEvents(self, t_event):
 
         menuCheck = self.menuButton.processEvents(t_event)
-
+        saveCheck = self.saveButton.processEvents(t_event)
 
         if (menuCheck):
 
@@ -79,6 +79,9 @@ class EditorScreen():
 
             self.editorOpen = not self.editorOpen
 
+        if (saveCheck):
+            None
+
         if (t_event.type == pygame.MOUSEWHEEL):
             self.listOfObjects.MoveItems((0, t_event.y * self.listScrollSpeed))
 
@@ -99,6 +102,18 @@ class EditorScreen():
 
         return image
 
+    def ResetEditor(self):
+        self.listOfObjects.EmptyList()
+
+        if (self.editorOpen):
+                self.menuButton.ChangePosition(globals.SCREEN_WIDTH - self.menuButton.width, 20)
+
+                self.listOfObjects.ChangePosition((globals.SCREEN_WIDTH, self.listOfObjects.listPlacement[1])) 
+
+                self.listOfObjects.MoveItems((self.listOfObjects.listSize[0],0))    
+
+                self.editorOpen = False
+
     editorOpen = False
 
 
@@ -114,6 +129,8 @@ class EditorScreen():
 
 
     menuButton = button.Button((33,49),"MenuButton.png")
+
+    saveButton = button.Button()
 
     listOfObjects = list.List(True)
 
