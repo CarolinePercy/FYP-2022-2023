@@ -10,8 +10,8 @@ import Scripts.RestAPI.imageRetriever as imageRetriever
 class main():
     
     def __init__(self):
-        self.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
         pygame.init()
+        self.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
 
     def processEvents(self, t_event):
         # Check for QUIT event    
