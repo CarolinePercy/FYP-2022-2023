@@ -1,7 +1,9 @@
 import pygame
 import os
 
-from ..UI import list, button, FindableItem, timer, levelEndScreen
+from ..UI import list, button, FindableItem, timer, levelEndScreen, textBox
+
+from ..Saves import SaveReader
 
 from . import screenTemplate
 
@@ -15,55 +17,67 @@ class Level(screenTemplate.Screen):
 
     def __init__(self):
 
-        for i in self.items:
+        #for i in self.items:
 
-            self.gameList.AddToList(globals.g_itemTypes[i.thisType.value][3])
+        #    self.gameList.AddToList(globals.g_itemTypes[i.thisType.value][3])
 
+        self.submitButton.ChangePosition(globals.SCREEN_WIDTH / 2 - self.submitButton.getSize()[0] / 2, globals.SCREEN_HEIGHT / 1.5)
+
+        self.submitButton.ChangeText('Submit')
 
     def render(base, screen):
 
         screen.fill(base.background_colour)
 
-        base.bg.Draw(screen)
+        if (base.levelSelected):
+            try:
+                base.bg.Draw(screen)   
 
+            except:
+                None
 
-        for i in base.items:
+        if (base.gameIsActive):
+            base.gameList.Draw(screen)
 
-            i.Draw(screen)
-        
-
-        base.gameList.Draw(screen)
-
-        base.time.Draw(screen)
+            base.time.Draw(screen)
 
         base.end.Draw(screen)
-        
 
+        if (not base.levelSelected):
+            base.submitButton.Draw(screen)
+            base.levelInput.Draw(screen)
+        
     def processEvents(base, t_event):   
 
         base.time.processEvents(t_event)
         
         if (base.gameIsActive):
-            for i in base.items:
+            base.gameList.ProcessEvents(t_event)
 
-                check = i.processEvents(t_event)
+        else:
+            retryCheck = base.end.ProcessEvents(t_event)
+
+            if (retryCheck > 0):
+                base.resetLevel()
+                if (retryCheck == 2):
+                    base.levelSelected = False
+                    return screenTemplate.Screens.MAIN_MENU
 
 
-                if (check):
+        if (not base.levelSelected):
+            enterCheck = base.levelInput.processEvents(t_event)
 
-                    i.Toggle(False)
-                    base.gameList.FoundItem(i.thisType)
+            submitCheck = base.submitButton.processEvents(t_event)
 
-        retryCheck = base.end.ProcessEvents(t_event)
-
-        if (retryCheck > 0):
-            base.resetLevel()
-            if (retryCheck == 2):
-                return screenTemplate.Screens.MAIN_MENU
-
+            if (enterCheck or submitCheck):
+                base.saves.ReadDataFromJSON(base.levelInput.ReturnInput())
+                base.gameList = base.saves.itemList
+                base.bg = base.saves.background
+                base.levelSelected = True
+                base.gameIsActive = True
+                base.time.StartTimer()
 
         return screenTemplate.Screens.MAIN_GAME
-
 
     def update(base, dt):
         base.end.Update(dt)
@@ -75,35 +89,26 @@ class Level(screenTemplate.Screen):
             base.gameIsActive = False
 
     def resetLevel(self):
-        for i in self.items:
-            i.Toggle(True)
-            self.gameList.ResetList()
-            self.gameIsActive = True
-            self.end.RestartLevel()
-            self.time.StartTimer()
-
-
-    background_colour = (100, 212, 12)
+        #for i in self.items:
+        #    i.Toggle(True)
+            
+        self.gameList.ResetList()
+        self.gameIsActive = False
+        self.levelSelected = False
+        self.end.RestartLevel()
+        self.time.StopTimer()
 
     screenRef = 0
 
-    bg = background.image('../Assets/Library-Background.jpg')
+    bg = ""
 
+    gameIsActive = False
+    levelSelected = False 
 
-    items = [
-
-    FindableItem.FindableItem(globals.Item.WINE), 
-
-    FindableItem.FindableItem(globals.Item.CLOCK),
-
-    FindableItem.FindableItem(globals.Item.LAPTOP),
-
-    FindableItem.FindableItem(globals.Item.BOOKS)
-
-    ]
-
-    gameIsActive = True
     gameList  = list.List()
     end = levelEndScreen.EndScreen()
-    time = timer.Timer()
     
+    time = timer.Timer()
+    levelInput = textBox.InputBox()
+    submitButton = button.Button()
+    saves = SaveReader.SaveStorer()

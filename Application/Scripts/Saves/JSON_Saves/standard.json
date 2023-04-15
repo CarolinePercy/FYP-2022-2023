@@ -1,0 +1,33 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "397.0",
+                "y": "155.0"
+            },
+            "image": "../Assets/AutoSavedAssets/standard/standard1.png"
+        },
+        {
+            "position": {
+                "x": "510.0",
+                "y": "360.0"
+            },
+            "image": "../Assets/AutoSavedAssets/standard/standard2.png"
+        },
+        {
+            "position": {
+                "x": "200.0",
+                "y": "600.0"
+            },
+            "image": "../Assets/AutoSavedAssets/standard/standard3.png"
+        },
+        {
+            "position": {
+                "x": "820.0",
+                "y": "430.0"
+            },
+            "image": "../Assets/AutoSavedAssets/standard/standard4.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/standard/standardBG.png"
+}

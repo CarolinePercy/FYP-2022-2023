@@ -10,7 +10,6 @@ pygame.init()
 
 class Button():
 
-
     def __init__(self, newSize = [140, 40], path = "buttonImage.png"):
         
 
@@ -58,7 +57,7 @@ class Button():
         self.UpdateText()
 
 
-    def ChangeText(self, newText):
+    def ChangeText(self, newText):  
 
         self.stringText = newText
 

@@ -1,4 +1,7 @@
 import json
+import pygame
+import os
+from pathlib import Path
 
 def SaveDataToJSON(nameOfLevel, saveData):
 
@@ -13,16 +16,13 @@ def SaveDataToJSON(nameOfLevel, saveData):
 
     except Exception as e:
         print(e)
+        print(type(saveData))
 
 def ConvertDataToJSON(nameOfLevel, items, background):
 
-    itemSaveData = []
-    backgroundSaveData = {}
+    itemSaveData = SaveImages(items, nameOfLevel)
+    backgroundSaveData = SaveBackground(background, nameOfLevel)
     
-    for item in items:
-        itemSaveData.append({"position" : "1", "image": "thj"})
-
-
     saveData = {
 
         "items": itemSaveData,
@@ -30,7 +30,51 @@ def ConvertDataToJSON(nameOfLevel, items, background):
 
     }
 
-    SaveDataToJSON(nameOfLevel, saveData)
+    if (type(saveData) is not dict):
 
-def SaveImages():
-    None
+        print(type(saveData))
+
+    else:
+        SaveDataToJSON(nameOfLevel, saveData)  
+
+def SaveImages(items, nameOfLevel):
+
+    imageNum = 1
+    name = ""
+    path = os.path.join(Path(os.getcwd()).parents[1], 'Assets\\AutoSavedAssets\\', name)
+    storedSave = ""
+
+    saveData = []
+
+    for i in items:
+
+        name = nameOfLevel + str(imageNum) + ".png"
+
+        storedSave = CheckDirectory(nameOfLevel, i.image, name)
+
+        saveData.append({"position" : { "x": str(i.position[0]), "y": str(i.position[1])}, "image" : str(storedSave)})
+        imageNum += 1
+
+    return saveData
+
+def SaveBackground(background, nameOfLevel):
+
+    name = nameOfLevel + "BG.png"
+
+    saveData = CheckDirectory(nameOfLevel, background, name)
+    
+    return saveData
+
+def CheckDirectory(nameOfLevel, image, name):
+
+    path = os.path.join(Path(os.getcwd()).parents[1], 'Assets\\AutoSavedAssets\\', nameOfLevel, name)
+    saveData = "../Assets/AutoSavedAssets/" + nameOfLevel + "/" + name
+
+    try:
+        pygame.image.save(image, path)
+            
+    except:
+        os.mkdir(Path(path).parents[0])
+        pygame.image.save(image, path)  
+
+    return saveData

@@ -3,7 +3,6 @@ import pygame
 #import numpy as np
 import os
 
-from Scripts.Saves import SaveReader, SaveWriter
 import Scripts.Screens.sceneManager as sceneManager
 import Scripts.globals as globals
 import Scripts.RestAPI.imageRetriever as imageRetriever
@@ -11,16 +10,16 @@ import Scripts.RestAPI.imageRetriever as imageRetriever
 class main():
     
     def __init__(self):
+
+        #print(f"Current working dir: {os.getcwd()}")
         pygame.init()
         self.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
-        SaveWriter.ConvertDataToJSON("test", (0,0), "")
-        SaveReader.ReadDataFromJSON("test")
 
     def processEvents(self, t_event):
         # Check for QUIT event    
         running = True
 
-        if t_event.type == pygame.QUIT:
+        if t_event.type == pygame.QUIT: 
             running = False       
 
         self.gameController.processEvents(t_event)
@@ -30,7 +29,7 @@ class main():
     def update(self,dt):
         self.gameController.update(dt)
 
-    def render(self):
+    def render(self): 
 
         self.gameController.render(self.screen)   
         pygame.display.flip()

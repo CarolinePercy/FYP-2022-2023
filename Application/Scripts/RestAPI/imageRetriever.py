@@ -136,7 +136,7 @@ class imageController():
                    
 
                     self.currentRequestsAvailable += 1
-
+    
     def RefineInput(self, input, type):
 
         if " " in input:

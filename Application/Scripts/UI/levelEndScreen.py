@@ -56,11 +56,9 @@ class EndScreen():
             exitCheck = self.exitButton.processEvents(t_event)
 
             if (retryCheck):
-                None
                 return 1
 
             if (exitCheck):
-                None
                 return 2
         
         return 0

@@ -1,13 +1,19 @@
 {
     "items": [
         {
-            "position": "1",
-            "image": "thj"
+            "position": {
+                "x": "720.0",
+                "y": "54.5"
+            },
+            "image": "../Assets/AutoSavedAssets/test/test1.png"
         },
         {
-            "position": "1",
-            "image": "thj"
+            "position": {
+                "x": "552.0",
+                "y": "163.0"
+            },
+            "image": "../Assets/AutoSavedAssets/test/test2.png"
         }
     ],
-    "background": {}
+    "background": "../Assets/AutoSavedAssets/test/testBG.png"
 }

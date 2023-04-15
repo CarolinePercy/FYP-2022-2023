@@ -78,3 +78,4 @@ class EditorItem(FindableItem.FindableItem):
     pressed = False
     onScreen = False
     visible = True
+    

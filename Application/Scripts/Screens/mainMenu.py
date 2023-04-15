@@ -21,9 +21,9 @@ class Menu(screenTemplate.Screen):
 
         self.quitButton.ChangePosition(centre, 500)
 
-        self.customLevelButton.ChangeText('Custom Level')
+        self.customLevelButton.ChangeText('Create Level')
 
-        self.standardLevelButton.ChangeText('Standard Level')
+        self.standardLevelButton.ChangeText('Load Level')
 
         self.optionsButton.ChangeText('Options')
 
