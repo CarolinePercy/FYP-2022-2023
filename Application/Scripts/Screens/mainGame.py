@@ -24,17 +24,17 @@ class Level(screenTemplate.Screen):
         self.submitButton.ChangePosition(globals.SCREEN_WIDTH / 2 - self.submitButton.getSize()[0] / 2, globals.SCREEN_HEIGHT / 1.5)
 
         self.submitButton.ChangeText('Submit')
+ 
+        self.errorRect.center = (globals.SCREEN_WIDTH / 2, (globals.SCREEN_HEIGHT / 2) + 50)
+
+        self.backButton.ChangePosition(5, 5)
+
+        self.backButton.ChangeText('Back')
 
     def render(base, screen):
 
         screen.fill(base.background_colour)
-
-        if (base.levelSelected):
-            try:
-                base.bg.Draw(screen)   
-
-            except:
-                None
+        base.bg.Draw(screen) 
 
         if (base.gameIsActive):
             base.gameList.Draw(screen)
@@ -46,6 +46,11 @@ class Level(screenTemplate.Screen):
         if (not base.levelSelected):
             base.submitButton.Draw(screen)
             base.levelInput.Draw(screen)
+
+            if (base.errorInput):
+                screen.blit(base.errorMessage, base.errorRect)
+
+        base.backButton.Draw(screen)
         
     def processEvents(base, t_event):   
 
@@ -70,12 +75,20 @@ class Level(screenTemplate.Screen):
             submitCheck = base.submitButton.processEvents(t_event)
 
             if (enterCheck or submitCheck):
-                base.saves.ReadDataFromJSON(base.levelInput.ReturnInput())
-                base.gameList = base.saves.itemList
-                base.bg = base.saves.background
-                base.levelSelected = True
-                base.gameIsActive = True
-                base.time.StartTimer()
+                base.errorInput = base.saves.ReadDataFromJSON(base.levelInput.ReturnInput())
+
+                if (not base.errorInput):
+                    base.gameList = base.saves.itemList
+                    base.bg = base.saves.background
+                    base.levelSelected = True
+                    base.gameIsActive = True
+                    base.time.StartTimer()
+
+        backCheck = base.backButton.processEvents(t_event)
+        if (backCheck):
+            base.resetLevel()
+            base.backButton.reset()
+            return screenTemplate.Screens.MAIN_MENU
 
         return screenTemplate.Screens.MAIN_GAME
 
@@ -97,13 +110,17 @@ class Level(screenTemplate.Screen):
         self.levelSelected = False
         self.end.RestartLevel()
         self.time.StopTimer()
+        self.errorInput = False
+        self.bg = self.originalBG
 
     screenRef = 0
 
-    bg = ""
+    originalBG = background.image("../Assets/search.jpg")
+    bg = originalBG
 
     gameIsActive = False
     levelSelected = False 
+    errorInput = False
 
     gameList  = list.List()
     end = levelEndScreen.EndScreen()
@@ -112,3 +129,10 @@ class Level(screenTemplate.Screen):
     levelInput = textBox.InputBox()
     submitButton = button.Button()
     saves = SaveReader.SaveStorer()
+
+    font = pygame.font.Font(None, 32)
+    text_color = (100, 0, 0)
+    errorMessage = font.render("No level could be found with that name.", True, text_color)
+    errorRect = errorMessage.get_rect()
+
+    backButton = button.Button()

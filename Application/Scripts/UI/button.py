@@ -33,15 +33,19 @@ class Button():
         self.darkestImage = self.image.copy()
 
 
-        darker = pygame.Surface(self.image.get_size()).convert_alpha()
+        darker = pygame.mask.from_surface(self.image)
+        darker = darker.to_surface(setcolor=(1, 1, 1, .20 *255))
+        darker.set_colorkey((0,0,0))
 
-        darker.fill((0, 0, 0, .20 *255))
+        darkest =pygame.mask.from_surface(self.image)
+        darkest = darkest.to_surface(setcolor=(1, 1, 1, .40 *255))
+        darkest.set_colorkey((0,0,0))
 
         self.darkerImage.blit(darker, (0, 0))
+        self.darkestImage.blit(darkest, (0, 0))
 
 
-        self.drawnImage = self.image
-
+        self.drawnImage = self.image    
 
     def ChangePosition(self, x, y):
         self.position = [x, y]
@@ -56,6 +60,13 @@ class Button():
         self.UpdateRect()
         self.UpdateText()
 
+    def ChangeRotation(self, t_rotateBy):
+        self.image = pygame.transform.rotate(self.image, t_rotateBy)
+        self.darkerImage = pygame.transform.rotate(self.darkerImage, t_rotateBy)
+        self.darkestImage = pygame.transform.rotate(self.darkestImage, t_rotateBy)
+        self.drawnImage = pygame.transform.rotate(self.drawnImage, t_rotateBy)
+
+        self.image.get_rect()
 
     def ChangeText(self, newText):  
 
@@ -81,7 +92,7 @@ class Button():
 
         while (self.textRect.width > self.width - 10):
 
-            tempFont = pygame.font.SysFont('candara', self.startFontSize - reducer)
+            tempFont = pygame.font.SysFont(self.fontName, self.startFontSize - reducer)
 
             reducer += 1
 
@@ -138,7 +149,10 @@ class Button():
 
         if (left <= mouse[0] <= right and top <= mouse[1] <= bottom):
 
-            self.drawnImage = self.image
+            try:
+                self.drawnImage = self.darkestImage
+            except:
+                None
 
             return True
         
@@ -151,6 +165,8 @@ class Button():
         t_screen.blit(self.drawnImage, (self.position[0], self.position[1]))
         t_screen.blit(self.buttonText, self.textRect)
 
+    def reset(self):
+        self.drawnImage = self.image
 
     def processEvents(self, t_event):
 
@@ -171,7 +187,6 @@ class Button():
 
     def UpdateRect(self):
         self.buttonRect.update(self.position[0], self.position[1], 
-        #self.image.get_width(), self.image.get_height())
         self.width, self.height)
 
     text_color = (0, 0, 0)
@@ -197,8 +212,9 @@ class Button():
 
     startFontSize = 30
 
+    fontName = 'twcen'
 
-    font = pygame.font.SysFont('candara', startFontSize)
+    font = pygame.font.SysFont(fontName, startFontSize)
 
     buttonText = font.render(stringText, True, text_color)
 

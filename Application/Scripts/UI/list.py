@@ -22,7 +22,7 @@ class List():
     def AddToList(self, item):
         self.objectList.append([item, False])
 
-        if isinstance(item, FindableItem.FindableItem):
+        if not isinstance(item, EditorItem.EditorItem) and isinstance(item, FindableItem.FindableItem):
 
             try:
                 silhouette = item.image.copy()

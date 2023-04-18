@@ -11,8 +11,6 @@ import time
 
 class EditorScreen():
 
-
-
     def __init__(self):
 
 
@@ -31,6 +29,9 @@ class EditorScreen():
 
         self.image[0].set_alpha(0)
 
+        self.leftButton.ChangePosition(0, globals.SCREEN_HEIGHT / 2)
+        self.leftButton.ChangeRotation(180)
+        self.rightButton.ChangePosition(globals.SCREEN_WIDTH - self.rightButton.buttonRect[2], globals.SCREEN_HEIGHT / 2)
 
     def Draw(self, t_screen):
 
@@ -42,6 +43,9 @@ class EditorScreen():
 
         self.menuButton.Draw(t_screen)
 
+        #self.leftButton.Draw(t_screen)
+
+        #self.rightButton.Draw(t_screen)
 
         self.saveButton.Draw(t_screen)
 
@@ -56,7 +60,11 @@ class EditorScreen():
     def RetrieveItemsAndBackground(self, input):
 
         self.image = self.imageGet.RequestBackgrounds(input)
+
         images = self.imageGet.RequestItems(input)
+
+        if (images is None or self.image == [pygame.Surface((0,0))]):
+            return False
 
 
         imageYStart = 50
@@ -75,14 +83,19 @@ class EditorScreen():
 
             imageYStart += oneImage.get_height() + self.itemDistanceOnList
 
+        return True
 
-    def ProcessEvents(self, t_event):
+
+    def ProcessEvents(self, t_event, input):
 
 
         menuCheck = self.menuButton.processEvents(t_event)
 
         saveCheck = self.saveButton.processEvents(t_event)
 
+        #leftCheck = self.leftButton.processEvents(t_event)
+
+        #rightCheck = self.rightButton.processEvents(t_event)
 
         if (menuCheck):
 
@@ -117,7 +130,7 @@ class EditorScreen():
 
 
         if (saveCheck):
-            self.SaveLevel()
+            self.SaveLevel(input)
 
 
         if (t_event.type == pygame.MOUSEWHEEL):
@@ -155,8 +168,12 @@ class EditorScreen():
     def ResetEditor(self):
 
         self.listOfObjects.EmptyList()
-        self.image[0].set_alpha(0)
 
+        try:
+            self.image[0].set_alpha(0)
+
+        except:
+            None
 
         if (self.editorOpen):
 
@@ -172,28 +189,18 @@ class EditorScreen():
                 self.editorOpen = False
 
 
-    def SaveLevel(self):
-        SaveWriter.ConvertDataToJSON("test", self.listOfObjects.GetOnScreenItems(), self.image[0])
+    def SaveLevel(self, input):
+        SaveWriter.ConvertDataToJSON(input, self.listOfObjects.GetOnScreenItems(), self.image[0])
 
 
     editorOpen = False
 
-
-
     font = pygame.font.SysFont('franklingothicmedium', 18)
 
-
-
     text_color = (0, 0, 0)
-
-
     textObject = ""
 
-
-
     textRect = font.render('', True, text_color)
-
-
 
     menuButton = button.Button((33,49),"MenuButton.png")
 
@@ -217,4 +224,4 @@ class EditorScreen():
     listScrollSpeed = 30
 
     image = [pygame.Surface((0,0))]
-     
+    

@@ -9,6 +9,8 @@ class SaveStorer():
 
     def ReadDataFromJSON(self,nameOfLevel):
 
+        nameOfLevel = nameOfLevel.replace(" ", "_")
+
         fileName = "../Saves/JSON_Saves/" + nameOfLevel + '.json'
 
         try:
@@ -18,14 +20,11 @@ class SaveStorer():
                 json_object = json.load(openfile)
         
             self.ConvertJSONToData(json_object)
+            return False
 
         except Exception as e:
-
-            #if (type(e) == FileNotFoundError):
-            #    print("No file found with that name.")
-
-            #else:
-                print(e)
+            print(e)
+            return True
 
     def ConvertJSONToData(self, data):
 
@@ -33,6 +32,8 @@ class SaveStorer():
         self.GetBackground(data)
 
     def GetItems(self, data):
+
+        self.itemList.EmptyList()
         
         for item in data['items']:
             location = (float(item['position']['x']), float(item['position']['y']))

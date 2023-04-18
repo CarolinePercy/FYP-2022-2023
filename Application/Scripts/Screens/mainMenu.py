@@ -4,7 +4,7 @@ import pygame
 
 from ..UI import button
 
-from .. import globals
+from .. import globals, background
 
 
 class Menu(screenTemplate.Screen):
@@ -13,11 +13,9 @@ class Menu(screenTemplate.Screen):
 
         centre = (globals.SCREEN_WIDTH / 2) - (self.customLevelButton.width / 2)
 
-        self.customLevelButton.ChangePosition(centre, 200)
+        self.customLevelButton.ChangePosition(centre, 300)
 
-        self.standardLevelButton.ChangePosition(centre, 300)
-
-        self.optionsButton.ChangePosition(centre, 400)
+        self.standardLevelButton.ChangePosition(centre, 400)
 
         self.quitButton.ChangePosition(centre, 500)
 
@@ -25,13 +23,13 @@ class Menu(screenTemplate.Screen):
 
         self.standardLevelButton.ChangeText('Load Level')
 
-        self.optionsButton.ChangeText('Options')
-
         self.quitButton.ChangeText('Quit')
 
     def render(base, screen):
 
         screen.fill(base.background_colour)
+
+        base.bg.Draw(screen)
 
         base.customLevelButton.Draw(screen)
 
@@ -39,7 +37,7 @@ class Menu(screenTemplate.Screen):
 
         base.quitButton.Draw(screen)
 
-        base.optionsButton.Draw(screen)
+        screen.blit(base.bgText, base.textRect)
 
     def processEvents(base, t_event):   
 
@@ -49,19 +47,16 @@ class Menu(screenTemplate.Screen):
 
         quitCheck = base.quitButton.processEvents(t_event)
 
-        optionsCheck = base.optionsButton.processEvents(t_event)
-
         if (customCheck):
+            base.customLevelButton.reset()
             return screenTemplate.Screens.MAIN_THEME_SELECTOR
 
         elif(quitCheck):
             quit()
 
         elif(standardCheck):
+            base.standardLevelButton.reset()
             return screenTemplate.Screens.MAIN_GAME
-
-        elif(optionsCheck):
-            return screenTemplate.Screens.MAIN_OPTIONS
 
         return screenTemplate.Screens.MAIN_MENU
 
@@ -69,6 +64,15 @@ class Menu(screenTemplate.Screen):
     customLevelButton = button.Button()
     standardLevelButton = button.Button()
     quitButton = button.Button()
-    optionsButton = button.Button()
 
+    bg = background.image("../Assets/MainMenu.jpg")
+    bgFontName = 'inkfree'
+
+    bgFont = pygame.font.SysFont(bgFontName, 90)
+
+    bgText = bgFont.render("Hidden Art", True, (255, 219, 191))
+
+    textRect = bgText.get_rect()
+
+    textRect.center = (globals.SCREEN_WIDTH / 2, globals.SCREEN_HEIGHT / 5)
 

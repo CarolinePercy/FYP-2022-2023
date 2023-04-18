@@ -6,7 +6,6 @@ class Screens(Enum):
     MAIN_MENU = 0
     MAIN_GAME = 1
     MAIN_THEME_SELECTOR = 2
-    MAIN_OPTIONS = 3
 
 class Screen():
 

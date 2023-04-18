@@ -30,6 +30,8 @@ def ConvertDataToJSON(nameOfLevel, items, background):
 
     }
 
+    nameOfLevel = nameOfLevel.replace(" ", "_")
+
     if (type(saveData) is not dict):
 
         print(type(saveData))

@@ -11,7 +11,6 @@ class main():
     
     def __init__(self):
 
-        #print(f"Current working dir: {os.getcwd()}")
         pygame.init()
         self.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
 
@@ -40,7 +39,7 @@ class main():
     gameController = sceneManager
     screen = 0
     
-startGame = main()
+startGame = main() 
 # Variable to keep our game loop running
 running = True
 

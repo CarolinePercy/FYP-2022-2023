@@ -64,7 +64,6 @@ class imageController():
                     
         else:
             print("No images match that theme.")
-            return  [pygame.Surface((0,0))]
 
     def DecodeResponse(self, originalResponse):
         arrayString = originalResponse.content.decode('utf8')

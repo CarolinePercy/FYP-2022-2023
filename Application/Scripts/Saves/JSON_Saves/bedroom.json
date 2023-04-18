@@ -1,0 +1,33 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "452.0",
+                "y": "126.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bedroom/bedroom1.png"
+        },
+        {
+            "position": {
+                "x": "102.0",
+                "y": "420.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bedroom/bedroom2.png"
+        },
+        {
+            "position": {
+                "x": "280.0",
+                "y": "634.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bedroom/bedroom3.png"
+        },
+        {
+            "position": {
+                "x": "606.0",
+                "y": "663.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bedroom/bedroom4.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/bedroom/bedroomBG.png"
+}

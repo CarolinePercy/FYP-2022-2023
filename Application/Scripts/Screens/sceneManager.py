@@ -1,4 +1,4 @@
-from . import screenTemplate, mainMenu, mainGame, ThemeInputScreen, mainOptions
+from . import screenTemplate, mainMenu, mainGame, ThemeInputScreen
 from ..RestAPI import imageRetriever
 
 def __init__(self, screen):
@@ -17,8 +17,6 @@ def processEvents(t_event):
     elif (currentScreen == screenTemplate.Screens.MAIN_THEME_SELECTOR):
         currentScreen = themeSelector.processEvents(t_event)
 
-    elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
-        currentScreen = options.processEvents(t_event)
 
 def render(screen):
     global currentScreen
@@ -31,9 +29,6 @@ def render(screen):
     
     elif (currentScreen == screenTemplate.Screens.MAIN_THEME_SELECTOR):
         themeSelector.render(screen)
-
-    elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
-        options.render(screen)
 
 
 def update(timePassed):
@@ -48,9 +43,6 @@ def update(timePassed):
     elif (currentScreen == screenTemplate.Screens.MAIN_THEME_SELECTOR):
         themeSelector.Update(timePassed)
 
-    elif (currentScreen == screenTemplate.Screens.MAIN_OPTIONS):
-        None
-
     imageGet.Update(timePassed)
 
 currentScreen = screenTemplate.Screens.MAIN_MENU
@@ -58,6 +50,5 @@ currentScreen = screenTemplate.Screens.MAIN_MENU
 game = mainGame.Level()
 menu = mainMenu.Menu()
 themeSelector = ThemeInputScreen.ThemeSelector()
-options = mainOptions.Options()
 
 imageGet = imageRetriever.imageController()
