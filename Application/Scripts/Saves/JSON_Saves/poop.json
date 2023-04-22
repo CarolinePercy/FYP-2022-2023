@@ -1,0 +1,61 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "433.0",
+                "y": "289.0"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop1.png"
+        },
+        {
+            "position": {
+                "x": "-75.0",
+                "y": "-35.0"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop2.png"
+        },
+        {
+            "position": {
+                "x": "807.0",
+                "y": "612.5"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop3.png"
+        },
+        {
+            "position": {
+                "x": "-75.0",
+                "y": "670.5"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop4.png"
+        },
+        {
+            "position": {
+                "x": "835.0",
+                "y": "213.5"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop5.png"
+        },
+        {
+            "position": {
+                "x": "702.0",
+                "y": "667.0"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop6.png"
+        },
+        {
+            "position": {
+                "x": "643.0",
+                "y": "301.0"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop7.png"
+        },
+        {
+            "position": {
+                "x": "415.0",
+                "y": "199.5"
+            },
+            "image": "../Assets/AutoSavedAssets/poop/poop8.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/poop/poopBG.png"
+}

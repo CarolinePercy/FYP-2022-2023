@@ -2,31 +2,24 @@
     "items": [
         {
             "position": {
-                "x": "497.0",
-                "y": "-18.5"
+                "x": "540.0",
+                "y": "-16.5"
             },
             "image": "../Assets/AutoSavedAssets/living room/living room1.png"
         },
         {
             "position": {
-                "x": "417.0",
-                "y": "479.5"
+                "x": "414.0",
+                "y": "474.5"
             },
             "image": "../Assets/AutoSavedAssets/living room/living room2.png"
         },
         {
             "position": {
-                "x": "791.0",
-                "y": "401.0"
+                "x": "806.0",
+                "y": "306.5"
             },
             "image": "../Assets/AutoSavedAssets/living room/living room3.png"
-        },
-        {
-            "position": {
-                "x": "196.0",
-                "y": "297.5"
-            },
-            "image": "../Assets/AutoSavedAssets/living room/living room4.png"
         }
     ],
     "background": "../Assets/AutoSavedAssets/living room/living roomBG.png"

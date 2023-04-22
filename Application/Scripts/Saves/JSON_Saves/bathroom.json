@@ -1,0 +1,26 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "814.0",
+                "y": "359.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bathroom/bathroom1.png"
+        },
+        {
+            "position": {
+                "x": "751.0",
+                "y": "495.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bathroom/bathroom2.png"
+        },
+        {
+            "position": {
+                "x": "657.0",
+                "y": "495.0"
+            },
+            "image": "../Assets/AutoSavedAssets/bathroom/bathroom3.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/bathroom/bathroomBG.png"
+}

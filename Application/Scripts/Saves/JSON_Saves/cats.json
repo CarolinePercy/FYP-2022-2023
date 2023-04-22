@@ -1,0 +1,12 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "895.0",
+                "y": "233.0"
+            },
+            "image": "../Assets/AutoSavedAssets/cats/cats1.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/cats/catsBG.png"
+}

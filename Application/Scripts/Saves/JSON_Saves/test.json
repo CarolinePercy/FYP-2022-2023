@@ -2,17 +2,24 @@
     "items": [
         {
             "position": {
-                "x": "720.0",
-                "y": "54.5"
+                "x": "716.0",
+                "y": "341.5"
             },
             "image": "../Assets/AutoSavedAssets/test/test1.png"
         },
         {
             "position": {
-                "x": "552.0",
-                "y": "163.0"
+                "x": "132.0",
+                "y": "205.0"
             },
             "image": "../Assets/AutoSavedAssets/test/test2.png"
+        },
+        {
+            "position": {
+                "x": "758.0",
+                "y": "120.0"
+            },
+            "image": "../Assets/AutoSavedAssets/test/test3.png"
         }
     ],
     "background": "../Assets/AutoSavedAssets/test/testBG.png"

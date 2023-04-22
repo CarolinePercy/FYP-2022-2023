@@ -33,6 +33,9 @@ class List():
                             a = silhouette.get_at((x, y))[3]
                             silhouette.set_at((x, y), pygame.Color(0, 0, 0, a))
 
+                if (silhouette.get_height() > 100):
+                    newSize = ((100 / silhouette.get_height()) * silhouette.get_width(), 100)
+                    silhouette = pygame.transform.scale(silhouette, newSize)
                 self.objectList.append([silhouette, False])
 
             except Exception as e:

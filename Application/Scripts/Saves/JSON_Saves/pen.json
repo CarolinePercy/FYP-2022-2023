@@ -1,0 +1,47 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "475.0",
+                "y": "486.0"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen1.png"
+        },
+        {
+            "position": {
+                "x": "674.0",
+                "y": "94.5"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen2.png"
+        },
+        {
+            "position": {
+                "x": "216.0",
+                "y": "150.0"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen3.png"
+        },
+        {
+            "position": {
+                "x": "163.0",
+                "y": "531.0"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen4.png"
+        },
+        {
+            "position": {
+                "x": "475.0",
+                "y": "574.5"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen5.png"
+        },
+        {
+            "position": {
+                "x": "671.0",
+                "y": "33.0"
+            },
+            "image": "../Assets/AutoSavedAssets/pen/pen6.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/pen/penBG.png"
+}

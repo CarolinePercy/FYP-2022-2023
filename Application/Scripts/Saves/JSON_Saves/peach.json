@@ -1,0 +1,33 @@
+{
+    "items": [
+        {
+            "position": {
+                "x": "526.0",
+                "y": "246.0"
+            },
+            "image": "../Assets/AutoSavedAssets/peach/peach1.png"
+        },
+        {
+            "position": {
+                "x": "526.0",
+                "y": "271.0"
+            },
+            "image": "../Assets/AutoSavedAssets/peach/peach2.png"
+        },
+        {
+            "position": {
+                "x": "519.0",
+                "y": "256.0"
+            },
+            "image": "../Assets/AutoSavedAssets/peach/peach3.png"
+        },
+        {
+            "position": {
+                "x": "582.0",
+                "y": "110.5"
+            },
+            "image": "../Assets/AutoSavedAssets/peach/peach4.png"
+        }
+    ],
+    "background": "../Assets/AutoSavedAssets/peach/peachBG.png"
+}
