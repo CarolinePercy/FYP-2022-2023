@@ -22,8 +22,6 @@ class imageController():
         imageRequest = self.RefineInput(input, globals.ImageType.ITEM)
         return self.APIImageRequest(imageRequest, amount)
 
-
-
     def GetImages(self, response, amount):
         #self.currentRequestsAvailable = int(response.headers.get('X-RateLimit-Remaining'))
         finalList = []
@@ -161,7 +159,7 @@ class imageController():
             result += "&colors=transparent"
 
         result += "&image_type=photo"
-        result += "&key=30783872-c5a38bc80f3c7265ec4f5515c"
+        result += "&key=" + self.key
         result += "&safesearch=true"
 
         return result
@@ -197,6 +195,6 @@ class imageController():
 
     tags = []
     numberOfTags = 0
-
+    key = "30783872-c5a38bc80f3c7265ec4f5515c"
 
     session = requests_cache.CachedSession('userCache')

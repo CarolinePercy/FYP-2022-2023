@@ -19,14 +19,12 @@ class FindableItem(button.Button):
         self.image = imageRetriever.imageController().getLocalImage(path)
 
 
-#        self.image = pygame.transform.smoothscale(self.image, globals.g_itemTypes[path.value][1])
 
 
         self.image = self.image.convert_alpha()
 
         self.ChangeScale(self.image.get_width(), self.image.get_height())
 
-#        self.ChangePosition(globals.g_itemTypes[path.value][2][0], globals.g_itemTypes[path.value][2][1])
 
         
     def Toggle(self, toggleValue):

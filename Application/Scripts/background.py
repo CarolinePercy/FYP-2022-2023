@@ -1,7 +1,6 @@
 from .RestAPI import imageRetriever
 from . import globals
 import pygame
-
 class image:
 
     def __init__(self, path):
@@ -10,4 +9,4 @@ class image:
         
     
     def Draw(self, t_screen):
-        t_screen.blit(pygame.transform.scale(self.imp, (1280, 720)), (0, 0))
+        t_screen.blit(pygame.transform.scale(self.imp, (globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT)), (0, 0))

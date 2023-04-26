@@ -206,6 +206,7 @@ class Button():
     image = 0
 
     darkerImage = 0
+    darkestImage = 0
 
     drawnImage = 0
 

@@ -1,6 +1,5 @@
 # import the pygame module
 import pygame
-#import numpy as np
 import os
 
 import Scripts.Screens.sceneManager as sceneManager

@@ -37,9 +37,6 @@ class SaveStorer():
         
         for item in data['items']:
             location = (float(item['position']['x']), float(item['position']['y']))
-            #image = imageRetriever.imageController().getLocalImage(item['image'])
-
-            #newItem = EditorItem.EditorItem(image, location)
 
             newItem = FindableItem.FindableItem(item['image'])
             newItem.ChangePosition(location[0], location[1])
@@ -47,7 +44,6 @@ class SaveStorer():
 
 
     def GetBackground(self, data):
-        #self.background = imageRetriever.imageController().getLocalImage(data['background'])
         self.background = background.image(data['background'])
 
     background = ""

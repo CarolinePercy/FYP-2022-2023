@@ -113,8 +113,6 @@ class Level(screenTemplate.Screen):
         self.errorInput = False
         self.bg = self.originalBG
 
-    screenRef = 0
-
     originalBG = background.image("../Assets/search.jpg")
     bg = originalBG
 
